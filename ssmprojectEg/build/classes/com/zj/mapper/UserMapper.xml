@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 注意mapper和dao的对应  -->
+<mapper namespace="com.zj.DAO.UserDAO">
+
+	<resultMap type="com.zj.entities.User" id="Base">
+	<id property="userId" column="USER_ID"/>
+	<result property="userName" column="USER_NAME"/>
+	<result property="userPassword" column="USER_PASSWORD"/>
+	<result property="userEmail" column="USER_EMAIL"/>
+	</resultMap>	
+	
+	
+	<select id="SelectUserByid" resultMap="Base">
+	SELECT * FROM t_user WHERE USER_ID=#{id}
+	</select>
+	
+	<select id="SelectUserByName" resultMap="Base">
+	SELECT * FROM t_user WHERE 1=1
+	<if test="name!=null">
+	AND USER_NAME=#{name}
+	</if>
+	ORDER BY USER_ID
+	</select>
+	
+</mapper>

@@ -1,0 +1,29 @@
+/该项目实现ssm整合，及分页呈现功能 ssm整合其实简化了mvc和mybatis的配置，注意集中到spring的配置中
+mapper和dao映射关系注意，service层处理业务
+后台分页借助mybatis插件 pagehelper 于config中配置
+分页类既可以自己封装PageResult（封装方便管理），需要熟悉相关api
+转化封装类对象时可以在controller中直接实现，转移工作量到自定义的BeanUtil（转换过程可以借助pageInfo也可以借助Page类）
+前台分页主要借助 bootstrap pageinator实现（jquery>1.9）,所以需要熟悉bootstrap相关操作
+关于数据处理 ，后台转化json对象 通过json-lib小全家桶实现，相对经典，写基类的controller只是为了方便调用，
+不涉及复杂类型转化时只是简单的调用fromobject等方法
+前端呈现时还是会出现中文乱码情况，所以还是需要进行关于json的配置，
+即配置自己的字符过滤器，手动配置添加messageConverts：StringHttpMeaasgeConvertor
+第一种使用paginator(原版page.jsp逻辑过于臭长)，优化过后pagenatior.jsp前端代码更易于理解,onclick中不需要手动重设optipons
+注意ajax路径即可
+
+前台分页第二种呈现方式，直接将pageinfo或封装类，及userlist传入request域中
+通过foreach标签循环实现（数据呈现及页表呈现）注意是否含有上下页的判断
+中间的页码未做优化 就剩循环后呈现123..末尾页形式
+
+分页第三种呈现类似，也是传参给后台，拿到封装结果集转成json，但使用了bootstrap的table插件，故按照api返回规定json格式
+最后近些呈现。每点击一页还是要传参进后台的，可以方便实现排序及更改页码size
+
+
+
+
+
+register模拟，只是初步完成注册信息的审核，前端js验证和后台查看信息是否已经注册
+login模拟,后台匹配即可
+之前servlet笨重写法完全可移植过来
+注意业务层及后台比较String避坑
+

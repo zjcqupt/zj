@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zj.DAO.AccountDAO">
+
+<resultMap type="com.zj.entities.Account" id="account">
+<result property="username" column="username"/>
+<result property="password" column="password"/>
+</resultMap>
+
+<insert id="insert">
+INSERT INTO login (username,password) VALUES (#{record.username},#{record.password})
+</insert>
+
+<select id="select" resultMap="account">
+SELECT * FROM login where username=#{name};
+</select>
+</mapper>
